@@ -52,6 +52,7 @@ namespace Ductulator
                 }
                 else
                 {
+
                     if(SelectedDuct.Selelement.Category.Id.IntegerValue == -2008000)
                     { 
                     Form1 homewin = new Form1(commandData);
