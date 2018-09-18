@@ -177,6 +177,7 @@
             // 
             // WidthProposed
             // 
+            this.WidthProposed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.WidthProposed.FormattingEnabled = true;
             this.WidthProposed.Location = new System.Drawing.Point(201, 15);
             this.WidthProposed.Name = "WidthProposed";
@@ -196,6 +197,7 @@
             // 
             // TypeOfDuctChoise
             // 
+            this.TypeOfDuctChoise.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TypeOfDuctChoise.FormattingEnabled = true;
             this.TypeOfDuctChoise.Location = new System.Drawing.Point(150, 369);
             this.TypeOfDuctChoise.Name = "TypeOfDuctChoise";
