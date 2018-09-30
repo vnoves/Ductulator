@@ -173,6 +173,7 @@ namespace Ductulator
             if (typeDuct == "Round")
             {
                 sa_DiamText = (ductDiameter * factorvalue).ToString();
+                a_Diam = ductDiameter * factorvalue;
             }
 
             //Obtain equivalent diameter

@@ -137,6 +137,7 @@ namespace Ductulator
         private void button4_Click(object sender, EventArgs e)
         {
             
+
             if (WidthProposed.Text == "")
             {
                 TaskDialog.Show("Warning", "Please propose a duct width first");
