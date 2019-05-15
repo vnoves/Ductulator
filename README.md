@@ -9,9 +9,9 @@ This addin allow you to properly re-size your ducts and then modify it base on t
 
 1. Select a duct within Revit
 
-2.  Propose a new width
+2.  Propose a new width or height
 
-3.  Calculate the new height 
+3.  Calculate the new dimension
 
 4.  Choose the duct Type
 
