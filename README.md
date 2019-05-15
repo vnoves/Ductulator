@@ -40,7 +40,7 @@ Follow me on [Twitter](https://twitter.com/valenoves).
 
 Assistance email contact: novesvalentin@gmail.com 
 
-Information of the author or the company
+
 
 Valentin Noves
 
