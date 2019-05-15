@@ -41,16 +41,6 @@ Follow me on [Twitter](https://twitter.com/valenoves).
 Assistance email contact: novesvalentin@gmail.com 
 
 
-
-Valentin Noves
-
- 
-
-Version History
-
-​1.0.0  Initial Version
-
-
 ## Disclaimer ##
 
 Permission to use, copy, modify, and distribute this software in object code form for any purpose and without fee is hereby granted, provided that the above copyright notice appears in all copies and that both that copyright notice and the limited warranty and restricted rights notice below appear in all supporting documentation.
