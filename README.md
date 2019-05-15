@@ -24,7 +24,7 @@ You are done!
 
 Looking to get the ductulator add-in?  Check out Autodesk app store
 
-https://apps.autodesk.com/RVT/en/Detail/Index?id=6272106374266176068&appLang=en&os=Win64
+[Autodesk app store](https://apps.autodesk.com/RVT/en/Detail/Index?id=6272106374266176068&appLang=en&os=Win64).
 
 
 ## Contribute ##
