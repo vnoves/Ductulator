@@ -32,14 +32,13 @@ Ductulator is an open-source project.  You can make suggestions or track and sub
 
 ## information ##
 
+Visit my [Website](http://www.valentinnoves.com/). 
 
-Company Name Contact: Valentin Noves
+visit my [Youtube channel](https://www.youtube.com/channel/UCp_UhkKl76_KA6WaHvWCBMg).
 
-Company URL: http://www.valentinnoves.com/
+Follow me on [Twitter](https://twitter.com/valenoves).
 
 Assistance email contact: novesvalentin@gmail.com 
-
- 
 
 Information of the author or the company
 
