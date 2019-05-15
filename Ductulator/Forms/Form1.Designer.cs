@@ -34,7 +34,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.DuctTypeBox = new System.Windows.Forms.TextBox();
             this.DuctSizeBox = new System.Windows.Forms.TextBox();
-            this.ProposedDuctHeight = new System.Windows.Forms.TextBox();
             this.RoundDuctEquivalentLabel = new System.Windows.Forms.Label();
             this.RoundDuctText = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -42,6 +41,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.ProposedDuctHeight = new System.Windows.Forms.ComboBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.WidthProposed = new System.Windows.Forms.ComboBox();
             this.button4 = new System.Windows.Forms.Button();
             this.TypeOfDuctChoise = new System.Windows.Forms.ComboBox();
@@ -73,9 +75,10 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(31, 149);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(127, 13);
+            this.label3.Size = new System.Drawing.Size(87, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Propose new duct width :";
+            this.label3.Text = "New duct width :";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -101,14 +104,6 @@
             this.DuctSizeBox.ReadOnly = true;
             this.DuctSizeBox.Size = new System.Drawing.Size(120, 20);
             this.DuctSizeBox.TabIndex = 6;
-            // 
-            // ProposedDuctHeight
-            // 
-            this.ProposedDuctHeight.Location = new System.Drawing.Point(214, 190);
-            this.ProposedDuctHeight.Name = "ProposedDuctHeight";
-            this.ProposedDuctHeight.ReadOnly = true;
-            this.ProposedDuctHeight.Size = new System.Drawing.Size(120, 20);
-            this.ProposedDuctHeight.TabIndex = 7;
             // 
             // RoundDuctEquivalentLabel
             // 
@@ -168,12 +163,50 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.ProposedDuctHeight);
+            this.panel2.Controls.Add(this.radioButton2);
+            this.panel2.Controls.Add(this.radioButton1);
             this.panel2.Controls.Add(this.WidthProposed);
             this.panel2.Controls.Add(this.button4);
             this.panel2.Location = new System.Drawing.Point(12, 130);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(361, 218);
             this.panel2.TabIndex = 15;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // ProposedDuctHeight
+            // 
+            this.ProposedDuctHeight.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ProposedDuctHeight.Enabled = false;
+            this.ProposedDuctHeight.FormattingEnabled = true;
+            this.ProposedDuctHeight.Location = new System.Drawing.Point(200, 59);
+            this.ProposedDuctHeight.Name = "ProposedDuctHeight";
+            this.ProposedDuctHeight.Size = new System.Drawing.Size(121, 21);
+            this.ProposedDuctHeight.TabIndex = 23;
+            this.ProposedDuctHeight.SelectedIndexChanged += new System.EventHandler(this.ProposedDuctHeight_SelectedIndexChanged);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(172, 62);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(14, 13);
+            this.radioButton2.TabIndex = 22;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(172, 18);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(14, 13);
+            this.radioButton1.TabIndex = 21;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // WidthProposed
             // 
@@ -237,7 +270,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.RoundDuctText);
             this.Controls.Add(this.RoundDuctEquivalentLabel);
-            this.Controls.Add(this.ProposedDuctHeight);
             this.Controls.Add(this.DuctSizeBox);
             this.Controls.Add(this.DuctTypeBox);
             this.Controls.Add(this.label4);
@@ -253,6 +285,7 @@
             this.Text = "Ductulator";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -266,7 +299,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox DuctTypeBox;
         private System.Windows.Forms.TextBox DuctSizeBox;
-        private System.Windows.Forms.TextBox ProposedDuctHeight;
         private System.Windows.Forms.Label RoundDuctEquivalentLabel;
         private System.Windows.Forms.TextBox RoundDuctText;
         private System.Windows.Forms.Label label6;
@@ -279,5 +311,8 @@
         private System.Windows.Forms.ComboBox TypeOfDuctChoise;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.ComboBox ProposedDuctHeight;
     }
 }

@@ -36,6 +36,9 @@ namespace Ductulator
 
             SelectedDuct.Execute(p_commanddata);
 
+            ProposedDuctHeight.AllowDrop = false;
+            ProposedDuctHeight.Text = "ddd";
+
             #region Add list of type of duct in the document
             var collectorround = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctCurves).OfClass(typeof(ElementType)).ToElementIds();
 
@@ -73,7 +76,7 @@ namespace Ductulator
 
 
             #region Create a List 1 to 10000 for the column selection
-                List<string> listNumbers = new List<string>();
+            List<string> listNumbers = new List<string>();
             for (int c = 1; c <= 500; c++)
             {
                 WidthProposed.Items.Add(c.ToString());
@@ -136,11 +139,32 @@ namespace Ductulator
 
         private void button4_Click(object sender, EventArgs e)
         {
-            
+            var proposedDimension = WidthProposed;
+            var resultDimension = ProposedDuctHeight;
+            var comparativeResult = "";
+            var OppositeResult = "";
 
-            if (WidthProposed.Text == "")
+            if (radioButton1.Checked == true)
             {
-                TaskDialog.Show("Warning", "Please propose a duct width first");
+                ProposedDuctHeight.Items.Clear();
+                proposedDimension = WidthProposed;
+                resultDimension = ProposedDuctHeight;
+                comparativeResult = SelectedDuct.a_Side.ToString();
+                OppositeResult = SelectedDuct.b_Side.ToString();
+            }
+            else
+            {
+                WidthProposed.Items.Clear();
+                proposedDimension = ProposedDuctHeight;
+                resultDimension = WidthProposed;
+                comparativeResult = SelectedDuct.b_Side.ToString();
+                OppositeResult = SelectedDuct.a_Side.ToString();
+            }
+
+
+            if (proposedDimension.Text == "")
+            {
+                TaskDialog.Show("Warning", "Please propose a dimension first");
             }
             else
             {
@@ -148,7 +172,7 @@ namespace Ductulator
                 {
 
                     double b_new_side = 0;
-                    double a_proposed = Convert.ToDouble(WidthProposed.Text);
+                    double a_proposed = Convert.ToDouble(proposedDimension.Text);
                     var i = 1;
                     double temp_diam_equiv = (1.3 * Math.Pow(a_proposed * i, 0.625)) / Math.Pow(a_proposed + i, 0.25);
 
@@ -165,25 +189,26 @@ namespace Ductulator
                     {
 
                         TaskDialog.Show("Warning", "B is 4 times larger than A");
-                        ProposedDuctHeight.Text = "";
+                        resultDimension.Text = "";
                     }
                     else
                     {
                         if (a_proposed > 4 * b_new_side)
                         {
                             TaskDialog.Show("Warning", "A is 4 times larger than B");
-                            ProposedDuctHeight.Text = "";
+                            resultDimension.Text = "";
                         }
                         else
                         {
-                            ProposedDuctHeight.Text = b_new_side.ToString();
+                            resultDimension.Items.Add(b_new_side.ToString());
+                            resultDimension.SelectedIndex = 0;
                         }
                     }
                 }
                 else
                 {
                     
-                    double a_proposed = Convert.ToDouble(WidthProposed.Text);
+                    double a_proposed = Convert.ToDouble(proposedDimension.Text);
 
 
                     int RoundDuctSize = SelectedDuct.round_Ductequivalent;
@@ -203,24 +228,27 @@ namespace Ductulator
                     {
 
                         TaskDialog.Show("Warning", "B is 4 times larger than A");
-                        ProposedDuctHeight.Text = "";
+                        resultDimension.Text = "";
                     }
                     else
                     {
                         if (a_proposed > 4 * b_new_side)
                         {
                             TaskDialog.Show("Warning", "A is 4 times larger than B");
-                            ProposedDuctHeight.Text = "";
+                            resultDimension.Text = "";
                         }
                         else
                         {
-                            if (SelectedDuct.a_Side.ToString() == WidthProposed.Text)
+                            
+                            if (comparativeResult ==  proposedDimension.Text)
                             {
-                                ProposedDuctHeight.Text = WidthProposed.Text;
+                                resultDimension.Items.Add(OppositeResult);
+                                resultDimension.SelectedIndex = 0;
                             }
                             else
                             {
-                                ProposedDuctHeight.Text = b_new_side.ToString();
+                                resultDimension.Items.Add(b_new_side);
+                                resultDimension.SelectedIndex = 0;
                             }
 
                             RoundDuctText.Text = RoundDuctSize.ToString();
@@ -272,9 +300,25 @@ namespace Ductulator
 
 
             selectedeleIds.Add(actualElement);
-           
 
-            if(TypeOfDuctChoise.Text == "")
+            var proposedDimension = WidthProposed;
+            var resultDimension = ProposedDuctHeight;
+
+            //if (radioButton1.Checked == true)
+            //{
+            //    proposedDimension = WidthProposed;
+            //    resultDimension = ProposedDuctHeight;
+            //}
+            //else
+            //{
+            //    proposedDimension = ProposedDuctHeight;
+            //    resultDimension = WidthProposed;
+            //}
+
+
+
+
+            if (TypeOfDuctChoise.Text == "")
             {
                 TaskDialog.Show("Warning", "Please select a duct type");
 
@@ -309,7 +353,7 @@ namespace Ductulator
                             }
                             else
                             {
-                                if (WidthProposed.Text == "")
+                                if (proposedDimension.Text == "")
                                 {
                                     TaskDialog.Show("Warning", "Please calculate a valid value");
                                     t.RollBack();
@@ -327,8 +371,8 @@ namespace Ductulator
                                         tran.Start("param");
                                         try
                                         {
-                                            newWidth.Set(Convert.ToDouble(WidthProposed.Text) / SelectedDuct.factorvalue);
-                                            newHeight.Set(Convert.ToDouble(ProposedDuctHeight.Text) / SelectedDuct.factorvalue);
+                                            newWidth.Set(Convert.ToDouble(proposedDimension.Text) / SelectedDuct.factorvalue);
+                                            newHeight.Set(Convert.ToDouble(resultDimension.Text) / SelectedDuct.factorvalue);
                                         }
                                         catch
                                         {
@@ -364,7 +408,7 @@ namespace Ductulator
                             }
                             else
                             {
-                                if (WidthProposed.Text == "")
+                                if (proposedDimension.Text == "")
                                 {
                                     TaskDialog.Show("Warning", "Please calculate a valid value");
                                     t.Dispose();
@@ -381,8 +425,8 @@ namespace Ductulator
                                         transac.Start("param");
                                         try
                                         {
-                                            newWidth.Set(Convert.ToDouble(WidthProposed.Text) /  SelectedDuct.factorvalue);
-                                            newHeight.Set(Convert.ToDouble(ProposedDuctHeight.Text) /  SelectedDuct.factorvalue);
+                                            newWidth.Set(Convert.ToDouble(proposedDimension.Text) /  SelectedDuct.factorvalue);
+                                            newHeight.Set(Convert.ToDouble(resultDimension.Text) /  SelectedDuct.factorvalue);
                                         }
                                         catch
                                         {
@@ -404,6 +448,56 @@ namespace Ductulator
         }
 
         private void TypeOfDuctChoise_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            List<string> listNumbers = new List<string>();
+            for (int c = 1; c <= 500; c++)
+            {
+                WidthProposed.Items.Add(c.ToString());
+            }
+            WidthProposed.Enabled = true;
+
+            ProposedDuctHeight.AllowDrop = false;
+            ProposedDuctHeight.ResetText();
+            ProposedDuctHeight.Enabled = false;
+            ProposedDuctHeight.Items.Clear();
+        }
+
+        private void ProposedDuctHeight_TextChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            List<string> listNumbers = new List<string>();
+            for (int c = 1; c <= 500; c++)
+            {
+                ProposedDuctHeight.Items.Add(c.ToString());
+            }
+            ProposedDuctHeight.Enabled = true;
+
+            WidthProposed.AllowDrop = false;
+            WidthProposed.ResetText();
+            WidthProposed.Enabled = false;
+            WidthProposed.Items.Clear();
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void ProposedDuctHeight_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
