@@ -3,7 +3,7 @@
   <AddIn Type="Application">
     <Name>Application Ductulator</Name>
     <Assembly>Ductulator.dll</Assembly>
-    <FullClassName>ExternalApp.CsAddpanel</FullClassName>
+    <FullClassName>Ductulator.App</FullClassName>
     <ClientId>FB8E8820-DB2B-49E5-A298-11FDFB710910</ClientId>
     <VendorId>com.typepad.valentinnoves</VendorId>
     <VendorDescription>Valentin Noves, http://valentinnoves.com</VendorDescription>

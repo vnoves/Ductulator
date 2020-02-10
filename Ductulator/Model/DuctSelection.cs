@@ -115,6 +115,8 @@ namespace Ductulator
 
             #region Filter Units
 
+
+
             if (ductSizeElement.Contains("DUT_DECIMAL_FEET"))
             {
                 factorvalue = 1;
