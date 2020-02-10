@@ -68,12 +68,9 @@ namespace Ductulator
             double factor = 0;
             ModelUnits.unitsName(elm, ref NameUnits, ref factor,ref unitAbrev);
 
-  
         }
 
        
-
-
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -81,7 +78,8 @@ namespace Ductulator
 
         private void Title_Link(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://apps.autodesk.com/RVT/en/Detail/Index?id=6272106374266176068&appLang=en&os=Win64");
+            System.Diagnostics.Process
+                .Start("https://apps.autodesk.com/RVT/en/Detail/Index?id=6272106374266176068&appLang=en&os=Win64");
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
