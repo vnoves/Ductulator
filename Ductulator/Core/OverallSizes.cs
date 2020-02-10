@@ -23,16 +23,27 @@ namespace Ductulator.Core
                 result.Add(temresult.ToString());
             }
             else
-            {
-                
-                double b_Side = elmConn.Height;
-                result.Add(b_Side.ToString());
-                double a_Side = elmConn.Width;
-                result.Add(a_Side.ToString());
+            {      
+                double b_Side = elmConn.Height * factorConvertion(elm);
+                result.Add(Math.Round(b_Side, 2).ToString());
+                double a_Side = elmConn.Width * factorConvertion(elm);
+                result.Add(Math.Round(a_Side, 2).ToString());
                 result.Add(DuctDiamEquiv.Diam_equiv(a_Side, b_Side).ToString());
             }
 
             return result;
         }
+
+        private static double factorConvertion(Element elm)
+        {
+            double result = 0;
+            string NameUnits = null;
+            string abrev = null;
+
+            ModelUnits.unitsName(elm, ref NameUnits, ref result, ref abrev);
+
+            return result;
+        }
+
     }
 }
