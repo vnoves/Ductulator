@@ -75,11 +75,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\OverallSizes.cs" />
+    <Compile Include="Core\ResizeRectangular.cs" />
+    <Compile Include="Core\TransformElm.cs" />
     <Compile Include="Model\CurrentDuctType.cs" />
     <Compile Include="Model\CurrentElmConn.cs" />
     <Compile Include="Model\DuctDiamEquiv.cs" />
     <Compile Include="Model\DuctSelection.cs" />
     <Compile Include="App.cs" />
+    <Compile Include="Model\DuctSide_equiv.cs" />
     <Compile Include="Model\GetCalculatedSize.cs" />
     <Compile Include="Model\GetCurrentSelection.cs" />
     <Compile Include="Model\ModelDuctTypes.cs" />

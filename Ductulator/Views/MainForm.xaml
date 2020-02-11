@@ -44,14 +44,14 @@
                    FontFamily="Roboto" Foreground="LightGray"/>
             <TextBox x:Name="rndDuct_Textbox" Style="{DynamicResource MainTextBox}" 
                    HorizontalAlignment="Left" Height="27" Margin="77,325,0,0" 
-                   TextWrapping="Wrap" VerticalAlignment="Top" Width="151"
+                   TextWrapping="Wrap" VerticalAlignment="Top" Width="176"
                      IsReadOnly="True"/>
             <Rectangle  HorizontalAlignment="Stretch"  VerticalAlignment="Top" Fill="Gray" 
                         Height="1" Margin="16,304,11,0" Opacity="0.2"/>
             <Label x:Name="rndDuct_Unit" Content="{Binding RelativeSource=
                    {RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=UnitAbrev}"  
-                   HorizontalAlignment="Left" Margin="233,326,0,0" VerticalAlignment="Top" 
-                   Width="35" FontFamily="Roboto" Foreground="LightGray" Height="27"/>
+                   HorizontalAlignment="Left" Margin="217,326,0,0" VerticalAlignment="Top" 
+                   Width="35" FontFamily="Roboto" Foreground="Black" Height="27"/>
 
 
             <!--New duct Height-->
@@ -60,11 +60,12 @@
                    Width="73" FontFamily="Roboto" Foreground="LightGray"/>
             <TextBox x:Name="nDctHeight_textBox" Style="{DynamicResource MainTextBox}" 
                    HorizontalAlignment="Left" Margin="76,211,0,0" 
-                   TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
+                   TextWrapping="Wrap" VerticalAlignment="Top" Width="177"
+                   TextChanged="textChangedEventHandler"/>
             <Label x:Name="nDctHeight_Unit" Content="{Binding RelativeSource=
                    {RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=UnitAbrev}"
-                   HorizontalAlignment="Left" Margin="232,211,0,0" VerticalAlignment="Top" 
-                   Width="35" FontFamily="Roboto" Foreground="LightGray" Height="27"/>
+                   HorizontalAlignment="Left" Margin="217,211,0,0" VerticalAlignment="Top" 
+                   Width="35" FontFamily="Roboto" Foreground="Black" Height="27"/>
 
             <!--New duct witdh-->
             <Label x:Name="nDctWidth_Label" Content="Duct width" 
@@ -72,11 +73,12 @@
                    Width="66" FontFamily="Roboto" Foreground="LightGray"/>
             <TextBox x:Name="nDctWidth_textBox" Style="{DynamicResource MainTextBox}" 
                    HorizontalAlignment="Left" Margin="76,254,0,0" 
-                   TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
+                   TextWrapping="Wrap" VerticalAlignment="Top" Width="177"
+                   TextChanged="textChangedEventHandlerWidth"/>
             <Label x:Name="nDctWidth_Unit" Content="{Binding RelativeSource=
                 {RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=UnitAbrev}"  
-                   HorizontalAlignment="Left" Margin="233,254,0,0" VerticalAlignment="Top" 
-                   Width="35" FontFamily="Roboto" Foreground="LightGray" Height="27"/>
+                   HorizontalAlignment="Left" Margin="217,254,0,0" VerticalAlignment="Top" 
+                   Width="35" FontFamily="Roboto" Foreground="Black" Height="27"/>
 
 
             <!--Type of duct-->
@@ -95,7 +97,8 @@
             <!--Button-->
             <Button Name="button" Style="{DynamicResource MainButtonStyle}" 
                     Content="Transform" HorizontalAlignment="Left" Margin="16,398,0,0"
-                    VerticalAlignment="Top" Width="237" Tag="" Height="33" />
+                    VerticalAlignment="Top" Width="237" Tag="" Height="33" 
+                    Click="Transform_Click" />
 
         </Grid>
     </Border>

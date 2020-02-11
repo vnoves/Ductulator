@@ -9,9 +9,9 @@ namespace Ductulator.Model
 {
     public static class ModelDuctTypes
     {
-        public static Dictionary<string, Parameter> elmnt (Document doc)
+        public static Dictionary<string, ElementId> elmnt (Document doc)
         {
-            Dictionary<string, Parameter> ductTypeList = new Dictionary<string, Parameter> { };
+            Dictionary<string, ElementId> ductTypeList = new Dictionary<string, ElementId> { };
             var collectorround = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctCurves).OfClass(typeof(ElementType)).ToElementIds();
 
             
@@ -19,7 +19,7 @@ namespace Ductulator.Model
             foreach (var d in collectorround)
             {
                 ductTypeList.Add(doc.GetElement(d).get_Parameter(BuiltInParameter.ALL_MODEL_FAMILY_NAME).AsString() 
-                    + " - " + doc.GetElement(d).Name.ToString(), doc.GetElement(d).get_Parameter(BuiltInParameter.ALL_MODEL_FAMILY_NAME));
+                    + " - " + doc.GetElement(d).Name.ToString(), d);
             }
 
             return ductTypeList;

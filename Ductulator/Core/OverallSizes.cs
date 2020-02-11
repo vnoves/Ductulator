@@ -19,7 +19,11 @@ namespace Ductulator.Core
 
             if (elmShape == "Round")
             {
-                var temresult = elmConn.Radius * 2;
+                var temresult = elmConn.Radius;
+                double b_Side = DuctSide_equiv.Side_equiv(temresult) * factorConvertion(elm);
+                result.Add(b_Side.ToString());
+                result.Add(b_Side.ToString());
+                temresult = temresult * 2 * factorConvertion(elm);
                 result.Add(temresult.ToString());
             }
             else

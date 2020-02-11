@@ -137,7 +137,7 @@ namespace Ductulator
                         UIDocument ui_doc = commandData.Application.ActiveUIDocument;
                         Autodesk.Revit.DB.Document doc = ui_doc.Document;
 
-                        homewin.Show();
+                        homewin.ShowDialog();
                     }
                     else
                     {
