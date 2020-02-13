@@ -9,21 +9,19 @@ using Ductulator.Model;
 using Ductulator.Core;
 using System.Windows.Controls;
 using System.Text.RegularExpressions;
+using Ductulator.Views_Cs;
 
 namespace Ductulator
 {
-    /// <summary>
-    /// Interaction logic for MainForm.xaml
-    /// </summary>
+   
     public partial class MainForm : Window
     {
-        public static UIApplication uiapp { get; set; }
         public static UIDocument uidoc { get; set; }
         public static Document doc { get; set; }
         public static Element elm { get; set; }
         public static double factor = 0;
-
-        private Dictionary<string, ElementId> ductTypes = new Dictionary<string, ElementId>();
+        private Dictionary<string, ElementId> 
+            ductTypes = new Dictionary<string, ElementId>();
         public Dictionary<string, ElementId> DuctTypes
         {
             get
@@ -31,7 +29,6 @@ namespace Ductulator
                 return ductTypes;
             }
         }
-
         public string unitAbrev = null;
         public string UnitAbrev
         {
@@ -71,12 +68,8 @@ namespace Ductulator
 
             //Assing abreviaion in current UI
             string NameUnits = null;
-            ModelUnits.unitsName(elm, ref NameUnits, ref factor,ref unitAbrev);
-
-            
-
+            ModelUnits.unitsName(elm, ref NameUnits, ref factor, ref unitAbrev);
         }
-
        
         private void Close_Click(object sender, RoutedEventArgs e)
         {
@@ -112,58 +105,26 @@ namespace Ductulator
         }
 
         /// <summary>
-        /// Check if the suffix is a number or not
+        /// Ductulate and validate values
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
         private void textChangedEventHandler(object sender, TextChangedEventArgs args)
         {
-            this.nDctHeight_textBox.Select(this.nDctHeight_textBox.Text.Length, 0);
-            int c;
-            bool isNumeric = int.TryParse(this.nDctHeight_textBox.Text, out c);
-            string numberOnly = "0";
-
-            int errorCounter = Regex.Matches(nDctHeight_textBox.Text, @"[a-zA-Z,`~!@#$%^&*()_=+{};]").Count;
-
-            if (errorCounter > 0)
-            {
-                string s = nDctHeight_textBox.Text;
-                if (s.Length > 1)
-                {
-                    numberOnly = Regex.Replace(s, "[^0-9.]", "");
-                }
-
-                nDctHeight_textBox.Text = numberOnly;
-                MessageBox.Show("Number field should contain only numbers");
-            }
+            MainFormControllers.textBox_handler(nDctHeight_textBox,
+                   nDctWidth_textBox, OverallSizes.elmSize(elm)[2]);
         }
 
         /// <summary>
-        /// Check if the suffix is a number or not
+        /// Ductulate and validate values
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        private void textChangedEventHandlerWidth(object sender, TextChangedEventArgs args)
+        private void textChangedEventHandlerWidth(object sender,
+            TextChangedEventArgs args)
         {
-            this.nDctWidth_textBox.Select(this.nDctWidth_textBox.Text.Length, 0);
-            int c;
-            bool isNumeric = int.TryParse(this.nDctWidth_textBox.Text, out c);
-            string numberOnly = "0";
-
-            int errorCounter = Regex.Matches(nDctWidth_textBox.Text, @"[a-zA-Z]").Count;
-
-            if (errorCounter > 0)
-            {
-                string s = nDctWidth_textBox.Text;
-                if (s.Length > 1)
-                {
-                    numberOnly = Regex.Replace(s, "[^0-9.]", "");
-                }
-
-                nDctWidth_textBox.Text = numberOnly;
-                MessageBox.Show("Number field should contain only numbers");
-            }
-
+            MainFormControllers.textBox_handler(nDctWidth_textBox,
+                nDctHeight_textBox, OverallSizes.elmSize(elm)[2]);
         }
     }
 

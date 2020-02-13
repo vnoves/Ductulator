@@ -48,6 +48,33 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2018|AnyCPU'">
+    <OutputPath>bin\2018\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2019|AnyCPU'">
+    <OutputPath>bin\2019\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2020|AnyCPU'">
+    <OutputPath>bin\2020\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PresentationCore" />
@@ -88,6 +115,7 @@
     <Compile Include="Model\ModelDuctTypes.cs" />
     <Compile Include="Model\CurrentDuctShape.cs" />
     <Compile Include="Model\ModelUnits.cs" />
+    <Compile Include="Views Cs\MainFormControllers.cs" />
     <Compile Include="Views\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,10 +131,7 @@
     <Compile Include="Views\StyleableWindow\ControlDoubleClickBehavior.cs" />
     <Compile Include="Views\StyleableWindow\ShowSystemMenuBehavior.cs" />
     <Compile Include="Views\StyleableWindow\SystemMenuManager.cs" />
-    <Compile Include="Views\StyleableWindow\WindowCloseCommand.cs" />
     <Compile Include="Views\StyleableWindow\WindowDragBehavior.cs" />
-    <Compile Include="Views\StyleableWindow\WindowMaximizeCommand.cs" />
-    <Compile Include="Views\StyleableWindow\WindowMinimizeCommand.cs" />
     <Compile Include="Views\StyleableWindow\WindowResizeBehavior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
