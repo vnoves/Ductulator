@@ -23,17 +23,27 @@ namespace Ductulator.Views_Cs
         string numberOnly = "0";
         int errorCounterDot = Regex.Matches
                 (currentTbx.Text, @"[.]").Count;
-        int errorCounter = Regex.Matches
-                (currentTbx.Text, @"[a-zA-Z,`~!@#$%^&*'()_=+{};/]").Count;
-            if (errorCounter > 0)
+            
+            int errorCounter = Regex.Matches
+                    (currentTbx.Text, @"[0-9]").Count;
+
+            errorCounter = errorCounter + errorCounterDot;
+            int TextLenght = currentTbx.Text.Length;
+
+            if (errorCounter != TextLenght)
             {
                 string s = currentTbx.Text;
                 if (s.Length > 1)
                 {
                     numberOnly = Regex.Replace(s, "[^0-9.]", "");
+                    currentTbx.Text = numberOnly;
+                }
+                else
+                {
+                    currentTbx.Text = "";
                 }
 
-                currentTbx.Text = numberOnly;
+                
                 MessageBox.Show
                     ("Number field should contain only numbers");
             }
@@ -52,7 +62,7 @@ namespace Ductulator.Views_Cs
 
                     currentTbx.Text = numberOnly;
                     MessageBox.Show
-                        ("Number field should contain only numbers");
+                        ("Only one dot is allowed");
                 }
                 else
                 {
@@ -60,10 +70,20 @@ namespace Ductulator.Views_Cs
                     {
                         oppositeTbx.Text = "";
                     }
+
                     else
                     {
+                        if (currentTbx.Text == "0")
+                        {
+                            oppositeTbx.Text = "";
+                            currentTbx.Text = "";
+                            MessageBox.Show("Value cannot be null");
+                        }
+                        else
+                        { 
                         oppositeTbx.Text = ResizeRectangular.Ductulate
                             (roundDuctEquiv, currentTbx.Text).ToString();
+                        }
                     }
                 }
 
