@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Ductulator.Core
 {
@@ -12,18 +9,18 @@ namespace Ductulator.Core
         {
             double RoundDuctSize = Convert.ToDouble(rnDctSize);
             double b_new_side = 0;
-            var i = 1;
+            double i = 1;
             double a_proposed = Convert.ToDouble(sizeDuct);
             double temp_diam_equiv = (1.3 * Math.Pow(a_proposed * i, 0.625)) / Math.Pow(a_proposed + i, 0.25);
 
             while (temp_diam_equiv <= RoundDuctSize)
             {
-                i += 1;
+                i += 0.1;
                 temp_diam_equiv = (1.3 * Math.Pow(a_proposed * i, 0.625)) / Math.Pow(a_proposed + i, 0.25);
             }
             b_new_side = i;
 
-            return b_new_side;
+            return Math.Round(b_new_side, 2);
         }
     }
 }

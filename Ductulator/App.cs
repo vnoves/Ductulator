@@ -10,6 +10,7 @@ using Autodesk.Revit.Attributes;
 
 namespace Ductulator
 {
+    
     class App : Autodesk.Revit.UI.IExternalApplication
     {
         // Generate an Guid for the App
@@ -74,6 +75,8 @@ namespace Ductulator
         }
     }
 
+    
+
     [Autodesk.Revit.Attributes.Transaction(TransactionMode.Manual)]
     [Autodesk.Revit.Attributes.Regeneration(Autodesk.Revit.Attributes.RegenerationOption.Manual)]
     [Autodesk.Revit.Attributes.Journaling(Autodesk.Revit.Attributes.JournalingMode.NoCommandData)]
@@ -90,6 +93,8 @@ namespace Ductulator
         public Element Selelement;
         public List<Element> Elems;
         public int NumberOfElements = 0;
+
+        public static MainForm homewin;
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             // objects for the top level access
@@ -132,7 +137,7 @@ namespace Ductulator
                     if (Selelement.Category.Id.IntegerValue == -2008000)
                     {
                         //Form1 homewin = new Form1(commandData);
-                        MainForm homewin = new MainForm(commandData);
+                        homewin = new MainForm(commandData);
 
                         UIDocument ui_doc = commandData.Application.ActiveUIDocument;
                         Autodesk.Revit.DB.Document doc = ui_doc.Document;

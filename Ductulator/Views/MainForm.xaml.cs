@@ -10,6 +10,7 @@ using Ductulator.Core;
 using System.Windows.Controls;
 using System.Text.RegularExpressions;
 using Ductulator.Views_Cs;
+using Ductulator.Views;
 
 namespace Ductulator
 {
@@ -95,12 +96,18 @@ namespace Ductulator
             }
             else
             {
-                ElementId typeSelect = 
-                    (ElementId)DuctType_comboBox.SelectedValue;
-                TransformElm.Apply(elm, doc, typeSelect, rndDuct_Textbox.Text,
-                    nDctHeight_textBox.Text, nDctWidth_textBox.Text, factor);
-                dctSize_textBox.Text =
-                GetCalculatedSize.ElmCalSize(elm).AsString();
+                if(CheckValues.CheckRatioRelation(nDctHeight_textBox.Text,
+                    nDctWidth_textBox.Text, CurrentDuctShape.elmShape(elm)))
+                {
+                    WarningForm homewin = new WarningForm
+                        ("The ratio is bigger than 1 to 4," +
+                        " do you want to continue?");
+                    homewin.ShowDialog();
+                }
+                else
+                {
+                    TransformAction.transform();
+                }
             }
         }
 
@@ -111,8 +118,10 @@ namespace Ductulator
         /// <param name="args"></param>
         private void textChangedEventHandler(object sender, TextChangedEventArgs args)
         {
+            nDctWidth_textBox.TextChanged -= textChangedEventHandlerWidth;
             MainFormControllers.textBox_handler(nDctHeight_textBox,
                    nDctWidth_textBox, OverallSizes.elmSize(elm)[2]);
+            nDctWidth_textBox.TextChanged -= textChangedEventHandlerWidth;
         }
 
         /// <summary>
@@ -123,8 +132,10 @@ namespace Ductulator
         private void textChangedEventHandlerWidth(object sender,
             TextChangedEventArgs args)
         {
+            nDctHeight_textBox.TextChanged -= textChangedEventHandler;
             MainFormControllers.textBox_handler(nDctWidth_textBox,
                 nDctHeight_textBox, OverallSizes.elmSize(elm)[2]);
+            nDctHeight_textBox.TextChanged -= textChangedEventHandler;
         }
     }
 

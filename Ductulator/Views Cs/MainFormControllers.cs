@@ -41,9 +41,7 @@ namespace Ductulator.Views_Cs
                 else
                 {
                     currentTbx.Text = "";
-                }
-
-                
+                }    
                 MessageBox.Show
                     ("Number field should contain only numbers");
             }
@@ -54,42 +52,55 @@ namespace Ductulator.Views_Cs
                     string s = currentTbx.Text;
                     if (s.Length > 1)
                     {
-                        var index = s.IndexOf
-                            ('.', s.IndexOf('.') + 1);
-                        numberOnly = string.Concat
-                            (s.Substring(0, index), "", s.Substring(index + 1));
+                        rplcSecondDot(s, ref numberOnly);
                     }
-
                     currentTbx.Text = numberOnly;
                     MessageBox.Show
                         ("Only one dot is allowed");
                 }
                 else
                 {
-                    if(currentTbx.Text == "")
-                    {
-                        oppositeTbx.Text = "";
-                    }
 
-                    else
+                    switch(currentTbx.Text)
                     {
-                        if (currentTbx.Text == "0")
-                        {
+                        case "":
                             oppositeTbx.Text = "";
-                            currentTbx.Text = "";
-                            MessageBox.Show("Value cannot be null");
-                        }
-                        else
-                        { 
-                        oppositeTbx.Text = ResizeRectangular.Ductulate
+                            break;
+                        case "0":
+                            oppositeTbx.Text = "0";
+                            currentTbx.Text = "0";
+                            break;
+                        case "0.":
+                            break;
+                        case "0.0":
+                            break;
+                        case "0.00":
+                            oppositeTbx.Text = "0.0";
+                            currentTbx.Text = "0";
+                            MessageBox.Show
+                                ("Value cannot be null");
+                            break;
+                        case "00":
+                            oppositeTbx.Text = "0";
+                            currentTbx.Text = "0";
+                            MessageBox.Show
+                                ("Value cannot be null");
+                            break;
+                        default:
+                            oppositeTbx.Text = ResizeRectangular.Ductulate
                             (roundDuctEquiv, currentTbx.Text).ToString();
-                        }
+                            break;
                     }
                 }
-
             }
+        }
 
-
+        private static void rplcSecondDot(string text,ref string txBoxText)
+        {
+            var index = text.IndexOf
+                            ('.', text.IndexOf('.') + 1);
+            txBoxText = string.Concat
+                (text.Substring(0, index), "", text.Substring(index + 1));
         }
     }
 }
