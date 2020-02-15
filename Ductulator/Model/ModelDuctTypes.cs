@@ -12,16 +12,35 @@ namespace Ductulator.Model
         public static Dictionary<string, ElementId> elmnt (Document doc)
         {
             Dictionary<string, ElementId> ductTypeList = new Dictionary<string, ElementId> { };
-            var collectorround = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctCurves).OfClass(typeof(ElementType)).ToElementIds();
 
-            
+            if (App.typeDuct == "Duct")
+            { 
+                var collectorround = new FilteredElementCollector(doc).
+                    OfCategory(BuiltInCategory.OST_DuctCurves).OfClass(typeof(ElementType)).ToElementIds();
 
-            foreach (var d in collectorround)
-            {
+                foreach (var d in collectorround)
+                {
                 ductTypeList.Add(doc.GetElement(d).get_Parameter(BuiltInParameter.ALL_MODEL_FAMILY_NAME).AsString() 
                     + " - " + doc.GetElement(d).Name.ToString(), d);
+                }
             }
+            else
+            {
+                var collectorround = new FilteredElementCollector(doc).
+                 OfCategory(BuiltInCategory.OST_FabricationDuctwork).OfClass(typeof(ElementType)).ToElementIds();
 
+
+                ElementId typeId = MainForm.elm.GetTypeId();
+                FabricationPartType fabPartType =  (FabricationPartType)doc.GetElement(typeId);
+                ICollection<ElementId> listTypes = fabPartType.GetSimilarTypes();
+
+                foreach (ElementId d in listTypes)
+                {
+                    ductTypeList.Add(doc.GetElement(d).get_Parameter
+                        (BuiltInParameter.SYMBOL_FAMILY_NAME_PARAM).AsString(), d);
+
+                }
+            }
             return ductTypeList;
         }
     }

@@ -40,8 +40,9 @@ namespace Ductulator.Core
             double result = 0;
             string NameUnits = null;
             string abrev = null;
+            double vfactor = 0;
 
-            ModelUnits.unitsName(elm, ref NameUnits, ref result, ref abrev);
+            ModelUnits.unitsName(elm, ref NameUnits, ref result, ref abrev, ref vfactor);
 
             return result;
         }

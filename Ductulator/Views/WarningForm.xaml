@@ -21,7 +21,7 @@
                     Foreground="Black" BorderThickness="0"
                     Background="Transparent" VerticalAlignment="Top" Height="39" 
                     FontSize="20" 
-                    FontWeight="Bold" Margin="14,3,161,0">WARNING</Button>
+                    FontWeight="Bold" Margin="20,8,155,0">WARNING</Button>
             <Button Style="{DynamicResource CloseButtonStyle}" Name="CloseButton" 
                    Foreground="Black" BorderThickness="0" Click="Close_Click" 
                    Background="Transparent" VerticalAlignment="Top" Height="21" 
@@ -29,16 +29,16 @@
 
             <!--Label-->
             <TextBlock x:Name="TextBlockError" HorizontalAlignment="Center" 
-                       Margin="16,47,21,0" TextWrapping="Wrap"
+                       Margin="16,71,21,0" TextWrapping="Wrap"
                        Text="{Binding Path=WarningString}" Width="234"
-                       FontFamily="Roboto" FontSize="18" Focusable="False"
-                       AllowDrop="False" Foreground="Black"  Height="91"
+                       FontFamily="Roboto" FontSize="16" Focusable="False"
+                       AllowDrop="False" Foreground="Black"  Height="67"
                        VerticalAlignment="Top" Visibility="Visible" 
                        TextAlignment="Center"/>
 
             <!--Button-->
             <Button Name="button" Style="{DynamicResource MainButtonStyle}" 
-                    Content="Transform" HorizontalAlignment="Left" Margin="16,152,0,0"
+                    Content="Accept" HorizontalAlignment="Left" Margin="16,152,0,0"
                     VerticalAlignment="Top" Width="237" Tag="" Height="33" 
                     Click="Transform_Click" />
 

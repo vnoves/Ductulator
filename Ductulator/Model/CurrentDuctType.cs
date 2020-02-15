@@ -8,10 +8,19 @@ namespace Ductulator.Model
     {
         public static string ElmType (Element elm)
         {
-        string result = elm.get_Parameter(BuiltInParameter.ELEM_FAMILY_PARAM).AsValueString()
-                    + " - " + elm.Name.ToString();
+            string result = "";
 
-        return result;
+            if (App.typeDuct == "Duct")
+            { 
+                 result = elm.get_Parameter(BuiltInParameter.ELEM_FAMILY_PARAM).AsValueString() 
+                    + " - " + elm.Name.ToString();
+            }
+            else
+            {
+                 result = elm.get_Parameter(BuiltInParameter.ELEM_FAMILY_PARAM).AsValueString();
+            }
+
+            return result;
         }
     }
 }

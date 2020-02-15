@@ -14,6 +14,7 @@ namespace Ductulator.Views_Cs
     {
         public static void transform()
         {
+
             ElementId typeSelect =
                     (ElementId)MainCommand.homewin.DuctType_comboBox.SelectedValue;
             TransformElm.Apply(MainForm.elm, MainForm.doc, typeSelect, 
@@ -22,6 +23,7 @@ namespace Ductulator.Views_Cs
                 MainCommand.homewin.nDctWidth_textBox.Text, MainForm.factor);
             MainCommand.homewin.dctSize_textBox.Text =
             GetCalculatedSize.ElmCalSize(MainForm.elm).AsString();
+
         }
     }
 }

@@ -182,10 +182,20 @@
     <!--MainButtons Custom template-->
     <ControlTemplate  x:Key="MainButtonStyleTemplate" TargetType="Button">
         <Border x:Name="border" 
-                    CornerRadius="3" 
+                    CornerRadius="20" 
                     BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    BorderThickness="{TemplateBinding BorderThickness}" 
+                Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                <ContentPresenter x:Name="contentPresenter" 
+                                  ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                  Content="{TemplateBinding Content}" 
+                                  ContentStringFormat="{TemplateBinding ContentStringFormat}" 
+                                  Focusable="False" 
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                  Margin="{TemplateBinding Padding}" 
+                                  RecognizesAccessKey="True" 
+                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
             </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="IsDefaulted" Value="True">
@@ -213,7 +223,9 @@
         <Setter Property="Height"  Value="38"/>
         <Setter Property="Button.Effect">
             <Setter.Value>
-                <DropShadowEffect Color="Black" Direction="320" ShadowDepth="3.6" BlurRadius="3" Opacity="0.25" />
+                <DropShadowEffect Color="Black" 
+                                  Direction="320" ShadowDepth="3.6" 
+                                  BlurRadius="3" Opacity="0.25" />
             </Setter.Value>
             </Setter>
     </Style>
@@ -489,7 +501,7 @@
     <!--MainButtons Custom template-->
     <ControlTemplate  x:Key="SettingsButtonStyleTemplate" TargetType="Button">
         <Border x:Name="border" 
-                    CornerRadius="3" 
+                    CornerRadius="6" 
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
             <Grid>

@@ -12,13 +12,11 @@ namespace Ductulator.Views_Cs
 {
     public static class MainFormControllers
     {
-        public static void textBox_handler(
+        public static void textBox_handler(double vFactor,
             System.Windows.Controls.TextBox currentTbx,
             System.Windows.Controls.TextBox oppositeTbx,
             string roundDuctEquiv)
         {
-
-            currentTbx.Select(currentTbx.Text.Length, 0);
 
         string numberOnly = "0";
         int errorCounterDot = Regex.Matches
@@ -88,7 +86,7 @@ namespace Ductulator.Views_Cs
                             break;
                         default:
                             oppositeTbx.Text = ResizeRectangular.Ductulate
-                            (roundDuctEquiv, currentTbx.Text).ToString();
+                            (vFactor, roundDuctEquiv, currentTbx.Text).ToString();
                             break;
                     }
                 }

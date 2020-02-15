@@ -9,16 +9,29 @@ namespace Ductulator.Model
         {
             string result;
 
-            if (elm.get_Parameter(BuiltInParameter.RBS_CURVE_DIAMETER_PARAM)?.AsValueString() != null)
+            if(App.typeDuct == "Duct")
             {
-                result = "Round";
+                if (elm.get_Parameter(BuiltInParameter.RBS_CURVE_DIAMETER_PARAM)?.AsValueString() != null)
+                {
+                    result = "Round";
 
+                }
+                else
+                {
+                    result = "Rectangular";
+                }
             }
             else
             {
-                result = "Rectangular";
+                if (elm.get_Parameter(BuiltInParameter.FABRICATION_PART_DIAMETER_IN)?.AsValueString() != null)
+                {
+                    result = "Round";
+                }
+                else
+                {
+                    result = "Rectangular";
+                }
             }
-
             return result;
         }
     }

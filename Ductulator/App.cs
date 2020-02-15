@@ -7,6 +7,7 @@ using System.IO;
 using System.Collections.Generic;
 using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.Attributes;
+using Ductulator.Views_Cs;
 
 namespace Ductulator
 {
@@ -21,6 +22,7 @@ namespace Ductulator
         static string ExecutingAssemblyPath = System.Reflection.Assembly
           .GetExecutingAssembly().Location;
 
+        public static string typeDuct = "";
 
         private System.Windows.Media.ImageSource PngImageSource(string embeddedPath)
         {
@@ -134,19 +136,41 @@ namespace Ductulator
                         Selelement = _doc.GetElement(item);
                     }
 
-                    if (Selelement.Category.Id.IntegerValue == -2008000)
+                    int SelElmCategory = Selelement.Category.Id.IntegerValue;
+
+
+                    UIDocument ui_doc =
+                            commandData.Application.ActiveUIDocument;
+                    Autodesk.Revit.DB.Document doc = ui_doc.Document;
+
+                    if (SelElmCategory == -2008000 ||
+                        SelElmCategory == -2008193)
                     {
-                        //Form1 homewin = new Form1(commandData);
-                        homewin = new MainForm(commandData);
-
-                        UIDocument ui_doc = commandData.Application.ActiveUIDocument;
-                        Autodesk.Revit.DB.Document doc = ui_doc.Document;
-
-                        homewin.ShowDialog();
+                        if(SelElmCategory == -2008000)
+                        {
+                            App.typeDuct = "Duct";
+                            homewin = new MainForm(commandData);
+                            homewin.ShowDialog();
+                        }
+                        else
+                        {
+                            if (FabDuctFiltering.straightSec(Selelement))
+                            {
+                                App.typeDuct = "FabPart";
+                                homewin = new MainForm(commandData);
+                                homewin.ShowDialog();
+                            }
+                            else
+                            {
+                                TaskDialog.Show
+                                    ("Revit", "You have not selected a straight Duct");
+                            }
+                        }
                     }
                     else
                     {
-                        TaskDialog.Show("Revit", "You have not selected a Duct");
+                        TaskDialog.Show
+                            ("Revit", "You have not selected a Duct");
                     }
                 }
 

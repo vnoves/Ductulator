@@ -13,7 +13,8 @@ namespace Ductulator.Model
         public static Element elem(Document doc, UIDocument uiDoc)
         {
             Element elmnt = null;
-            ICollection<ElementId> selectedIds = uiDoc.Selection.GetElementIds();
+            ICollection<ElementId> selectedIds = 
+                uiDoc.Selection.GetElementIds();
             foreach (ElementId item in selectedIds)
             {
                 elmnt = doc.GetElement(item);

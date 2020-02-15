@@ -49,7 +49,6 @@ namespace Ductulator.Views
 
         private void Transform_Click(object sender, RoutedEventArgs e)
         {
-            TransformAction.transform();
             this.Close();
         }
     }

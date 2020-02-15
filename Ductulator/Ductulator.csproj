@@ -54,6 +54,15 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PresentationCore" />
@@ -107,6 +116,8 @@
     <Compile Include="Core\OverallSizes.cs" />
     <Compile Include="Core\ResizeRectangular.cs" />
     <Compile Include="Core\TransformElm.cs" />
+    <Compile Include="Model\FabPartDefinition.cs" />
+    <Compile Include="Utils\CommonAssemblyInfo.cs" />
     <Compile Include="Model\CurrentDuctType.cs" />
     <Compile Include="Model\CurrentElmConn.cs" />
     <Compile Include="Model\DuctDiamEquiv.cs" />
@@ -118,6 +129,7 @@
     <Compile Include="Model\CurrentDuctShape.cs" />
     <Compile Include="Model\ModelUnits.cs" />
     <Compile Include="Views Cs\CheckRatioRelation.cs" />
+    <Compile Include="Views Cs\FabDuctFiltering.cs" />
     <Compile Include="Views Cs\MainFormControllers.cs" />
     <Compile Include="Views Cs\TransformAction.cs" />
     <Compile Include="Views\MainForm.xaml.cs">

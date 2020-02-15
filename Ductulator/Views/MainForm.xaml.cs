@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using System.Text.RegularExpressions;
 using Ductulator.Views_Cs;
 using Ductulator.Views;
+using Ductulator.Utils;
 
 namespace Ductulator
 {
@@ -21,6 +22,7 @@ namespace Ductulator
         public static Document doc { get; set; }
         public static Element elm { get; set; }
         public static double factor = 0;
+        public static double Vfactor = 0;
         private Dictionary<string, ElementId> 
             ductTypes = new Dictionary<string, ElementId>();
         public Dictionary<string, ElementId> DuctTypes
@@ -47,10 +49,19 @@ namespace Ductulator
             uidoc = cmddata_p.Application.ActiveUIDocument;
             doc = uidoc.Document;
 
+            //Assign current selection
+            elm = GetCurrentSelection.elem(doc, uidoc);
+
+            //Assing abreviaion in current UI
+            string NameUnits = null;
+            ModelUnits.unitsName(elm, ref NameUnits,
+                ref factor, ref unitAbrev, ref Vfactor);
+
+           
             this.DataContext = this;
             InitializeComponent();
 
-            elm = GetCurrentSelection.elem(doc, uidoc);
+            
             dctSize_textBox.Text = 
                 GetCalculatedSize.ElmCalSize(elm).AsString();
 
@@ -67,11 +78,17 @@ namespace Ductulator
             nDctWidth_textBox.Text = OverallSizes.elmSize(elm)[1];
             rndDuct_Textbox.Text = OverallSizes.elmSize(elm)[2];
 
-            //Assing abreviaion in current UI
-            string NameUnits = null;
-            ModelUnits.unitsName(elm, ref NameUnits, ref factor, ref unitAbrev);
+            nDctHeight_textBox.Select(nDctHeight_textBox.Text.Length, 0);
+            nDctWidth_textBox.Select(nDctWidth_textBox.Text.Length, 0);
         }
-       
+
+        public string projectVersion = CommonAssemblyInfo.Number;
+        public string ProjectVersion
+        {
+            get { return projectVersion; }
+            set { projectVersion = value; }
+        }
+
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -96,18 +113,7 @@ namespace Ductulator
             }
             else
             {
-                if(CheckValues.CheckRatioRelation(nDctHeight_textBox.Text,
-                    nDctWidth_textBox.Text, CurrentDuctShape.elmShape(elm)))
-                {
-                    WarningForm homewin = new WarningForm
-                        ("The ratio is bigger than 1 to 4," +
-                        " do you want to continue?");
-                    homewin.ShowDialog();
-                }
-                else
-                {
-                    TransformAction.transform();
-                }
+                TransformAction.transform();
             }
         }
 
@@ -118,10 +124,15 @@ namespace Ductulator
         /// <param name="args"></param>
         private void textChangedEventHandler(object sender, TextChangedEventArgs args)
         {
+            
+
             nDctWidth_textBox.TextChanged -= textChangedEventHandlerWidth;
-            MainFormControllers.textBox_handler(nDctHeight_textBox,
+            MainFormControllers.textBox_handler(Vfactor, nDctHeight_textBox,
                    nDctWidth_textBox, OverallSizes.elmSize(elm)[2]);
-            nDctWidth_textBox.TextChanged -= textChangedEventHandlerWidth;
+            nDctWidth_textBox.TextChanged += textChangedEventHandlerWidth;
+
+           
+
         }
 
         /// <summary>
@@ -132,10 +143,12 @@ namespace Ductulator
         private void textChangedEventHandlerWidth(object sender,
             TextChangedEventArgs args)
         {
+           
             nDctHeight_textBox.TextChanged -= textChangedEventHandler;
-            MainFormControllers.textBox_handler(nDctWidth_textBox,
+            MainFormControllers.textBox_handler(Vfactor, nDctWidth_textBox,
                 nDctHeight_textBox, OverallSizes.elmSize(elm)[2]);
-            nDctHeight_textBox.TextChanged -= textChangedEventHandler;
+            nDctHeight_textBox.TextChanged += textChangedEventHandler;
+
         }
     }
 
