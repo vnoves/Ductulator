@@ -32,7 +32,7 @@ Ductulator is an open-source project.  You can make suggestions or track and sub
 
 ## information ##
 
-Visit my [Website](http://www.valentinnoves.com/). 
+Visit my [Website](https://vnoves.com/). 
 
 visit my [Youtube channel](https://www.youtube.com/channel/UCp_UhkKl76_KA6WaHvWCBMg).
 
