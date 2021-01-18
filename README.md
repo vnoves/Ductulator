@@ -38,7 +38,6 @@ visit my [Youtube channel](https://www.youtube.com/channel/UCp_UhkKl76_KA6WaHvWC
 
 Follow me on [Twitter](https://twitter.com/valenoves).
 
-foldld [![Twitter Follow](https://img.shields.io/twitter/follow/afrojme.svg?style=social&label=Follow)](https://twitter.com/valenoves)
 Assistance email contact: novesvalentin@gmail.com 
 
 
